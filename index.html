@@ -3,65 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Personal Records</title>
+  <title>Gurukul Canteen Record</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Manage Personal Records</h1>
-    <nav>
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
-      <ul id="navList">
-        <li><a href="index.html">Personal Records</a></li>
-        <li><a href="transactions.html">Transactions</a></li>
-        <li><a href="transaction_history.html">Transaction History</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Gurukul Canteen Record</h1>
+      <button id="theme-switch">🌙</button>
+    </header>
+    
+    <section class="filters">
+      <input type="text" id="student-name" placeholder="Search by Student Name" autocomplete="off">
+      <input type="date" id="start-date">
+      <input type="date" id="end-date">
+      <select id="transaction-type">
+        <option value="All">All Transactions</option>
+        <option value="Debit">Debit</option>
+        <option value="Credit">Credit</option>
+      </select>
+      <button id="search-btn">Search</button>
+    </section>
 
-  <main>
-    <h2>Add New Personal Record</h2>
-    <table class="records-table" id="newRecordTable">
-      <tr>
-        <td><input type="file" accept="image/*" id="imageInput"></td>
-        <td><input type="text" id="nameInput" placeholder="Name"></td>
-        <td>
-          <select id="categoryInput">
-            <option value="customer">Customer</option>
-            <option value="vendor">Vendor</option>
-            <option value="worker">Worker</option>
-          </select>
-        </td>
-        <td><input type="text" id="guardianInput" placeholder="Guardian/Date of Joining"></td>
-        <td><input type="text" id="addressInput" placeholder="Address"></td>
-        <td><input type="text" id="contactInput" placeholder="Contact"></td>
-        <td><button onclick="addRecord()">Add</button></td>
-      </tr>
-    </table>
+    <div id="loading" class="spinner"></div>
+    <section id="transactions">
+      <table id="transactions-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Debit Amount</th>
+            <th>Credit Amount</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="pagination"></div>
+    </section>
 
-    <h2>Personal Records</h2>
-    <table class="records-table" id="recordsTable">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Guardian/Date of Joining</th>
-          <th>Address</th>
-          <th>Contact</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Rows will be added here dynamically -->
-      </tbody>
-    </table>
-  </main>
-
-  <footer>
-    <p>&copy; Designed by Radhika</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <footer>
+      <div id="total-balance">Total Balance: ₹0</div>
+      <button id="download-pdf">Download PDF</button>
+      <button id="share-whatsapp">Share via WhatsApp</button>
+    </footer>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
