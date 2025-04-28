@@ -11,7 +11,13 @@ modeSwitch.addEventListener('change', function() {
 });
 
 function fetchStudentData() {
-  google.script.run.withSuccessHandler(populateStudentList).getStudentList();
+  google.script.run
+    .withSuccessHandler(populateStudentList)
+    .withFailureHandler(function(error) {
+      console.error('Failed to fetch student list:', error);
+      alert('Error fetching student list: ' + error.message);
+    })
+    .getStudentList();
 }
 
 function populateStudentList(students) {
