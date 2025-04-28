@@ -1,53 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gurukul Canteen Record</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="container">
-    <header>
-      <h1>Gurukul Canteen Record</h1>
-      <button id="theme-switch">🌙</button>
-    </header>
-    
-    <section class="filters">
-      <input type="text" id="student-name" placeholder="Search by Student Name" autocomplete="off">
-      <input type="date" id="start-date">
-      <input type="date" id="end-date">
-      <select id="transaction-type">
-        <option value="All">All Transactions</option>
-        <option value="Debit">Debit</option>
-        <option value="Credit">Credit</option>
-      </select>
-      <button id="search-btn">Search</button>
-    </section>
+<body class="dark-mode">
 
-    <div id="loading" class="spinner"></div>
-    <section id="transactions">
-      <table id="transactions-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Debit Amount</th>
-            <th>Credit Amount</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <div id="pagination"></div>
-    </section>
-
-    <footer>
-      <div id="total-balance">Total Balance: ₹0</div>
-      <button id="download-pdf">Download PDF</button>
-      <button id="share-whatsapp">Share via WhatsApp</button>
-    </footer>
+  <div id="main-header">
+    <h2>Transaction Manager</h2>
+    <div id="date-container">
+      <label for="date">Date*</label>
+      <input type="date" id="date" required>
+    </div>
+    <div id="submit-container">
+      <button id="submitButton">Submit</button>
+    </div>
+    <div id="mode-toggle">
+      <label>Mode:</label>
+      <label class="switch">
+        <input type="checkbox" id="mode-switch">
+        <span class="slider"></span>
+      </label>
+    </div>
   </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="app.js"></script>
+
+  <div id="main-content">
+    <div class="header-row">
+      <div class="header-cell">Student (Class)</div>
+      <div class="header-cell">Debit Amount</div>
+      <div class="header-cell">Credit Amount</div>
+      <div class="header-cell">Total Balance</div>
+    </div>
+    <div id="student-table"></div>
+  </div>
+
+  <div id="footer">
+    <div id="grand-total">Grand Total = ₹0</div>
+    <div id="developer-note">&#169; Designed by Radhika</div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
