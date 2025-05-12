@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gurukul Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:,">
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body class="dark-mode">
+
+  <!-- 🔝 Fixed Header -->
+  <header id="main-header">
+    <h2>Gurukul Manager</h2>
+    <nav class="nav-tabs">
+      <button class="tab-button active" onclick="switchTab('entry')" id="entryTab">➕ Entry</button>
+      <button class="tab-button" onclick="switchTab('dashboard')" id="dashboardTab">📊 Dashboard</button>
+      <button class="tab-button" onclick="switchTab('snapshot')" id="snapshotTab">📆 Snapshot</button>
+    </nav>
+    <div class="mode-toggle">
+      <label class="switch">
+        <input type="checkbox" id="modeSwitch" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <!-- 📥 Main -->
+  <main class="main-content">
+
+    <!-- Entry Tab -->
+    <section id="entry" class="tab active">
+      <h2>Transaction Entry</h2>
+      <div class="date-container">
+        <label for="entryDate">Date:</label>
+        <input type="date" id="entryDate" />
+      </div>
+      <div class="entry-header-row">
+        <div>Student</div>
+        <div>Debit (Rs.)</div>
+        <div>Credit (Rs.)</div>
+        <div>Balance</div>
+      </div>
+      <div id="entryList"></div>
+      <div id="entryStatus" class="status-message"></div>
+      <button id="saveAllButton" class="button-primary">💾 Save All Entries</button>
+      <div id="entryTotal" class="entry-footer-summary"></div>
+    </section>
+
+    <!-- Dashboard Tab -->
+    <section id="dashboard" class="tab">
+      <h2>Student Dashboard</h2>
+      <div class="filter-box">
+        <label for="dashboardStudent">Student:</label>
+        <select id="dashboardStudent"></select>
+        <label for="fromDate">From:</label>
+        <input type="date" id="fromDate" />
+        <label for="toDate">To:</label>
+        <input type="date" id="toDate" />
+        <button class="button-primary" onclick="loadDashboard()">🔍 Load</button>
+      </div>
+      <div id="dashboardSummary" class="summary-box"></div>
+      <table id="transactionTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Debit (Rs.)</th>
+            <th>Credit (Rs.)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="tableBalanceTotal" class="summary-box"></div>
+    </section>
+
+    <!-- Snapshot Tab -->
+    <section id="snapshot" class="tab">
+      <h2>Daily Snapshot</h2>
+      <div class="filter-box">
+        <label for="snapFrom">From:</label>
+        <input type="date" id="snapFrom" />
+        <label for="snapTo">To:</label>
+        <input type="date" id="snapTo" />
+        <label for="balanceFilter">Balance:</label>
+        <select id="balanceFilter">
+          <option value="all">All</option>
+          <option value="credit">In Credit</option>
+          <option value="debit">In Debit</option>
+        </select>
+        <button class="button-primary" onclick="loadSnapshot()">📆 Load</button>
+      </div>
+      <table id="snapshotTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Student</th>
+            <th>Class</th>
+            <th>Debit (Rs.)</th>
+            <th>Credit (Rs.)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2025 Designed by Radhika</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
