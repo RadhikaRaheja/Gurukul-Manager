@@ -192,36 +192,3 @@ async function exportDashboardPDF(name) {
     alert("Sharing not supported on this device.");
   }
 }
-
-async function loadSnapshot() {
-  const from = document.getElementById('snapFrom').value;
-  const to = document.getElementById('snapTo').value || from;
-  const balanceFilter = document.getElementById('balanceFilter').value;
-
-  if (!from) return alert('Please select a date');
-
-  const res = await fetch(`${backendURL}?action=getSnapshot&from=${from}&to=${to}`);
-  const data = await res.json();
-
-  const filtered = data.filter(row => {
-    const net = row.credit - row.debit;
-    if (balanceFilter === 'credit') return net > 0;
-    if (balanceFilter === 'debit') return net < 0;
-    return true;
-  });
-
-  const tbody = document.querySelector('#snapshotTable tbody');
-  tbody.innerHTML = '';
-  filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
-  filtered.forEach(row => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${formatDateDMY(row.date)}</td>
-      <td>${row.name}</td>
-      <td>${row.class}</td>
-      <td style="color:#e53935;">Rs. ${row.debit}</td>
-      <td style="color:#10b981;">Rs. ${row.credit}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
