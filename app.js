@@ -1,4 +1,4 @@
-const backendURL = 'https://script.google.com/macros/s/AKfycbypDJzcNcauuboj4UR8qzEN058y1ZzHD-LsH_J9fUc-yCVE6z5f7HW0jaNiWrjyCvkd/exec';
+const backendURL = 'https://script.google.com/macros/s/AKfycbzAcnE74-ZGdZwCRkK5Q78nZyqetxKaEihA1Q8-cAYoCpVA5aNFGB9mkuOFUUnPXb9F/exec';
 
 let allTransactions = [];
 
